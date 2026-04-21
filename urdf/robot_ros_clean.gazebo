@@ -1,0 +1,222 @@
+<?xml version="1.0" ?>
+<robot name="robot_ros_clean" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<!-- ================================================================ -->
+<!--                      LINK MATERIALS                              -->
+<!-- ================================================================ -->
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="ros_base_arm_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="ros_link1_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="ros_link2_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="motor_holder_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="dong_co_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="banh_xe_1">
+  <material>Gazebo/DarkGrey</material>
+  <mu1>0.0</mu1>
+  <mu2>0.0</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="motor_holder_2">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="dong_co_2">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="banh_xe_2">
+  <material>Gazebo/DarkGrey</material>
+  <mu1>0.0</mu1>
+  <mu2>0.0</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="motor_holder_3">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="dong_co_3">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="banh_xe_3">
+  <material>Gazebo/DarkGrey</material>
+  <mu1>0.0</mu1>
+  <mu2>0.0</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="motor_holder_4">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="dong_co_4">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<gazebo reference="banh_xe_4">
+  <material>Gazebo/DarkGrey</material>
+  <mu1>0.0</mu1>
+  <mu2>0.0</mu2>
+  <selfCollide>false</selfCollide>
+</gazebo>
+
+<!-- ================================================================ -->
+<!--              CAM BIEN 1: LIDAR PLUGIN                            -->
+<!-- Publish topic: /scan (sensor_msgs/LaserScan)                     -->
+<!-- ================================================================ -->
+<gazebo reference="ros_LiDar_1">
+  <material>Gazebo/Blue</material>
+  <sensor type="ray" name="lidar_sensor">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>10</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1</resolution>
+          <min_angle>-3.14159265</min_angle>
+          <max_angle>3.14159265</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.1</min>
+        <max>10.0</max>
+        <resolution>0.01</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
+      <ros>
+        <remapping>~/out:=scan</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>ros_LiDar_1</frame_name>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<!-- ================================================================ -->
+<!--              CAM BIEN 2: CAMERA PLUGIN                           -->
+<!-- Publish topic: /camera/image_raw (sensor_msgs/Image)             -->
+<!--               /camera/camera_info (sensor_msgs/CameraInfo)       -->
+<!-- ================================================================ -->
+<gazebo reference="ros_camera_1">
+  <material>Gazebo/Red</material>
+  <sensor type="camera" name="camera_sensor">
+    <update_rate>30.0</update_rate>
+    <camera name="front_camera">
+      <horizontal_fov>1.3962634</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.02</near>
+        <far>300</far>
+      </clip>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.007</stddev>
+      </noise>
+    </camera>
+    <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
+      <frame_name>ros_camera_1</frame_name>
+      <ros>
+        <remapping>image_raw:=camera/image_raw</remapping>
+        <remapping>camera_info:=camera/camera_info</remapping>
+      </ros>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<!-- ================================================================ -->
+<!--   CAM BIEN 3: ENCODER - doc qua JointStateBroadcaster            -->
+<!--   Encoder duoc mo phong thong qua state_interface "position"     -->
+<!--   cua 4 wheel joints trong ros2_control.                         -->
+<!--   Topic: /joint_states (sensor_msgs/JointState)                  -->
+<!--   - banh_xe_1..4 position = goc quay (rad) ~ encoder count       -->
+<!-- ================================================================ -->
+<gazebo>
+  <plugin name="mecanum_planar_move" filename="libgazebo_ros_planar_move.so">
+    <ros>
+      <remapping>cmd_vel:=cmd_vel</remapping>
+      <remapping>odom:=odom</remapping>
+    </ros>
+    <update_rate>100</update_rate>
+    <publish_rate>50</publish_rate>
+    <publish_odom>true</publish_odom>
+    <publish_odom_tf>true</publish_odom_tf>
+    <odometry_frame>odom</odometry_frame>
+    <robot_base_frame>base_footprint</robot_base_frame> <covariance_x>0.0001</covariance_x>
+    <covariance_y>0.0001</covariance_y>
+    <covariance_yaw>0.01</covariance_yaw>
+  </plugin>
+</gazebo>
+
+</robot>

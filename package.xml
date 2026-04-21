@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>robot_ros_clean_description</name>
+  <version>0.1.0</version>
+  <description>
+    Mo ta robot mecanum 4 banh voi tay may 2 bac tu do (P-R).
+    Cam bien: Camera, LiDAR, Encoder.
+    Ho tro mo phong Gazebo va hien thi RViz2.
+  </description>
+
+  <maintainer email="your_email@example.com">Your Name</maintainer>
+  <license>MIT</license>
+
+  <!-- Build tool -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core ROS2 -->
+  <depend>rclpy</depend>
+  <depend>rclcpp</depend>
+
+  <!-- Robot description -->
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>xacro</depend>
+
+  <!-- Visualization -->
+  <depend>rviz2</depend>
+
+  <!-- Simulation -->
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_plugins</depend>
+
+  <!-- ros2_control -->
+  <depend>gazebo_ros2_control</depend>
+  <depend>ros2_control</depend>
+  <depend>ros2_controllers</depend>
+  <depend>controller_manager</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>joint_trajectory_controller</depend>
+  <depend>velocity_controllers</depend>
+
+  <!-- Sensor messages -->
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/.."/>
+  </export>
+</package>

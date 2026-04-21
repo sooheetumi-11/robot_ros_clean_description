@@ -1,0 +1,594 @@
+<?xml version="1.0" ?>
+<robot name="robot_ros_clean" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find robot_ros_clean_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find robot_ros_clean_description)/urdf/robot_ros_clean.gazebo" />
+
+<link name="base_footprint"/>
+
+<joint name="base_footprint_joint" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<!-- ================================================================ -->
+<!--                        BASE LINK                                  -->
+<!-- ================================================================ -->
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.12462045008338714 0.09999999999999995 0.04188167126230022" rpy="0 0 0"/>
+    <mass value="2.283418938552482"/>
+    <inertia ixx="0.012527" iyy="0.014412" izz="0.021139" ixy="-0.0" iyz="-0.0" ixz="2.5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                     TAY MAY (2-DOF ARM: P-R)                     -->
+<!-- ================================================================ -->
+<link name="ros_base_arm_1">
+  <inertial>
+    <origin xyz="-0.029516493136890608 0.03000000000000004 0.04134096552037238" rpy="0 0 0"/>
+    <mass value="0.4033034789727494"/>
+    <inertia ixx="0.000554" iyy="0.000519" izz="0.000177" ixy="-0.0" iyz="0.0" ixz="-2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 -0.07 -0.08" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_base_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 -0.07 -0.08" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_base_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Khop 1: Tinh tien (Prismatic) -->
+<link name="ros_link1_1">
+  <inertial>
+    <origin xyz="0.038230908420957735 0.0011931596637218683 -0.008863149486995903" rpy="0 0 0"/>
+    <mass value="0.09948537534151555"/>
+    <inertia ixx="8e-06" iyy="4.4e-05" izz="4.6e-05" ixy="-2e-06" iyz="0.0" ixz="3e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.065 -0.1 -0.183" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_link1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.065 -0.1 -0.183" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_link1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- Khop 2: Quay (Revolute) -->
+<link name="ros_link2_1">
+  <inertial>
+    <origin xyz="0.042406282335935554 2.7755575615628914e-17 0.03245348508382098" rpy="0 0 0"/>
+    <mass value="0.11487741223113516"/>
+    <inertia ixx="4.4e-05" iyy="0.000111" izz="7.2e-05" ixy="0.0" iyz="0.0" ixz="-5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.005 -0.0985 -0.173" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_link2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.005 -0.0985 -0.173" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_link2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                  BANH XE MECANUM - FRONT LEFT (1)                -->
+<!-- ================================================================ -->
+<link name="motor_holder_1">
+  <inertial>
+    <origin xyz="-0.021500000000021897 0.012999999999999979 0.008985632228465181" rpy="0 0 0"/>
+    <mass value="0.0883728633386553"/>
+    <inertia ixx="2.1e-05" iyy="3.1e-05" izz="3.3e-05" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.01 -0.01 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.01 -0.01 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="dong_co_1">
+  <inertial>
+    <origin xyz="2.067790383364354e-15 -0.00036118980169993695 2.0816681711721685e-16" rpy="0 0 0"/>
+    <mass value="0.39174796452285"/>
+    <inertia ixx="0.000186" iyy="4.4e-05" izz="0.000186" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0315 -0.023 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0315 -0.023 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="banh_xe_1">
+  <inertial>
+    <origin xyz="2.8171909249863347e-15 -0.010021123454858952 5.169475958410885e-16" rpy="0 0 0"/>
+    <mass value="0.18672464343655906"/>
+    <inertia ixx="0.0001" iyy="0.00015" izz="0.0001" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0315 0.027 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0315 0.027 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                  BANH XE MECANUM - BACK LEFT (2)                 -->
+<!-- ================================================================ -->
+<link name="motor_holder_2">
+  <inertial>
+    <origin xyz="-0.02149999999997857 0.013000000000000067 0.00898563222846439" rpy="0 0 0"/>
+    <mass value="0.0883728633386553"/>
+    <inertia ixx="2.1e-05" iyy="3.1e-05" izz="3.3e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.01 -0.164 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.01 -0.164 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="dong_co_2">
+  <inertial>
+    <origin xyz="1.762479051592436e-15 0.0003611898016997739 -9.124645483638005e-16" rpy="0 0 0"/>
+    <mass value="0.39174796452285"/>
+    <inertia ixx="0.000186" iyy="4.4e-05" izz="0.000186" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0315 -0.177 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0315 -0.177 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="banh_xe_2">
+  <inertial>
+    <origin xyz="0.0 0.010021123454857339 -3.4243441415782172e-15" rpy="0 0 0"/>
+    <mass value="0.18672464343655906"/>
+    <inertia ixx="0.0001" iyy="0.00015" izz="0.0001" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0315 -0.227 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0315 -0.227 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                  BANH XE MECANUM - FRONT RIGHT (3)               -->
+<!-- ================================================================ -->
+<link name="motor_holder_3">
+  <inertial>
+    <origin xyz="0.021500000000021446 -0.012999999999999973 0.008985632228466295" rpy="0 0 0"/>
+    <mass value="0.0883728633386553"/>
+    <inertia ixx="2.1e-05" iyy="3.1e-05" izz="3.3e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.24 -0.036 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.24 -0.036 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="dong_co_3">
+  <inertial>
+    <origin xyz="1.6653345369377348e-15 -0.0003611898016992847 -9.26342336171615e-16" rpy="0 0 0"/>
+    <mass value="0.39174796452285"/>
+    <inertia ixx="0.000186" iyy="4.4e-05" izz="0.000186" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2185 -0.023 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.2185 -0.023 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="banh_xe_3">
+  <inertial>
+    <origin xyz="-1.1379786002407855e-15 -0.010021123454857981 3.5006719745211967e-15" rpy="0 0 0"/>
+    <mass value="0.18672464343655906"/>
+    <inertia ixx="0.0001" iyy="0.00015" izz="0.0001" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2185 0.027 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.2185 0.027 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                  BANH XE MECANUM - BACK RIGHT (4)                -->
+<!-- ================================================================ -->
+<link name="motor_holder_4">
+  <inertial>
+    <origin xyz="0.02150000000002139 0.01300000000000015 0.008985632228466291" rpy="0 0 0"/>
+    <mass value="0.0883728633386553"/>
+    <inertia ixx="2.1e-05" iyy="3.1e-05" izz="3.3e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.24 -0.164 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.24 -0.164 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/motor-holder_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="dong_co_4">
+  <inertial>
+    <origin xyz="1.8041124150158794e-15 0.00036118980169985715 -7.494005416219807e-16" rpy="0 0 0"/>
+    <mass value="0.39174796452285"/>
+    <inertia ixx="0.000186" iyy="4.4e-05" izz="0.000186" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2185 -0.177 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.2185 -0.177 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/dong_co_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="banh_xe_4">
+  <inertial>
+    <origin xyz="2.7755575615628914e-17 0.010021123454858422 -3.3237301799715624e-15" rpy="0 0 0"/>
+    <mass value="0.18672464343655906"/>
+    <inertia ixx="0.0001" iyy="0.00015" izz="0.0001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2185 -0.227 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.2185 -0.227 -0.0201" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/banh_xe_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                        CAM BIEN                                   -->
+<!-- ================================================================ -->
+<link name="ros_LiDar_1">
+  <inertial>
+    <origin xyz="-0.020570799003321955 4.163336342344337e-17 0.005010425278889286" rpy="0 0 0"/>
+    <mass value="0.19870606989277823"/>
+    <inertia ixx="2.7e-05" iyy="7.1e-05" izz="9.4e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.15 -0.1 -0.08" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_LiDar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.15 -0.1 -0.08" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_LiDar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ros_camera_1">
+  <inertial>
+    <origin xyz="0.002706674669848084 -0.004999999999974414 1.3798388616252655e-07" rpy="0 0 0"/>
+    <mass value="0.03233713708856587"/>
+    <inertia ixx="5e-06" iyy="1e-06" izz="4e-06" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.105 -0.015" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.105 -0.015" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_ros_clean_description/meshes/ros_camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ================================================================ -->
+<!--                ENCODER LINK (virtual link cho encoder)           -->
+<!-- ================================================================ -->
+<link name="encoder_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.001"/>
+    <inertia ixx="1e-05" iyy="1e-05" izz="1e-05" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+</link>
+
+<!-- ================================================================ -->
+<!--                           JOINTS                                  -->
+<!-- ================================================================ -->
+
+<!-- ARM: fixed base -->
+<joint name="fixed_arm_base" type="fixed">
+  <origin xyz="-0.04 0.07 0.08" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="ros_base_arm_1"/>
+</joint>
+
+<!-- ARM: Khop 1 - Tinh tien (Prismatic) - KHOP P -->
+<joint name="slider_joint" type="prismatic">
+  <origin xyz="-0.025 0.03 0.103" rpy="0 0 0"/>
+  <parent link="ros_base_arm_1"/>
+  <child link="ros_link1_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="0.0" lower="-0.07" effort="100" velocity="100"/>
+</joint>
+
+<!-- ARM: Khop 2 - Quay (Revolute) - KHOP R -->
+<joint name="revolute_arm" type="revolute">
+  <origin xyz="0.07 -0.0015 -0.01" rpy="0 0 0"/>
+  <parent link="ros_link1_1"/>
+  <child link="ros_link2_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+<!-- WHEEL FL: motor holder -->
+<joint name="fixed_motor_holder_1" type="fixed">
+  <origin xyz="-0.01 0.01 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="motor_holder_1"/>
+</joint>
+
+<joint name="fixed_dong_co_1" type="fixed">
+  <origin xyz="-0.0215 0.013 0.0151" rpy="0 0 0"/>
+  <parent link="motor_holder_1"/>
+  <child link="dong_co_1"/>
+</joint>
+
+<!-- WHEEL FL: banh xe - co encoder -->
+<joint name="wheel_fl_joint" type="continuous">
+  <origin xyz="0.0 -0.05 0.0" rpy="0 0 0"/>
+  <parent link="dong_co_1"/>
+  <child link="banh_xe_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<!-- WHEEL BL: motor holder -->
+<joint name="fixed_motor_holder_2" type="fixed">
+  <origin xyz="-0.01 0.164 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="motor_holder_2"/>
+</joint>
+
+<joint name="fixed_dong_co_2" type="fixed">
+  <origin xyz="-0.0215 0.013 0.0151" rpy="0 0 0"/>
+  <parent link="motor_holder_2"/>
+  <child link="dong_co_2"/>
+</joint>
+
+<!-- WHEEL BL: banh xe - co encoder -->
+<joint name="wheel_bl_joint" type="continuous">
+  <origin xyz="0.0 0.05 0.0" rpy="0 0 0"/>
+  <parent link="dong_co_2"/>
+  <child link="banh_xe_2"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<!-- WHEEL FR: motor holder -->
+<joint name="fixed_motor_holder_3" type="fixed">
+  <origin xyz="-0.24 0.036 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="motor_holder_3"/>
+</joint>
+
+<joint name="fixed_dong_co_3" type="fixed">
+  <origin xyz="0.0215 -0.013 0.0151" rpy="0 0 0"/>
+  <parent link="motor_holder_3"/>
+  <child link="dong_co_3"/>
+</joint>
+
+<!-- WHEEL FR: banh xe - co encoder -->
+<joint name="wheel_fr_joint" type="continuous">
+  <origin xyz="0.0 -0.05 0.0" rpy="0 0 0"/>
+  <parent link="dong_co_3"/>
+  <child link="banh_xe_3"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<!-- WHEEL BR: motor holder -->
+<joint name="fixed_motor_holder_4" type="fixed">
+  <origin xyz="-0.24 0.164 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="motor_holder_4"/>
+</joint>
+
+<joint name="fixed_dong_co_4" type="fixed">
+  <origin xyz="0.0215 0.013 0.0151" rpy="0 0 0"/>
+  <parent link="motor_holder_4"/>
+  <child link="dong_co_4"/>
+</joint>
+
+<!-- WHEEL BR: banh xe - co encoder -->
+<joint name="wheel_br_joint" type="continuous">
+  <origin xyz="0.0 0.05 0.0" rpy="0 0 0"/>
+  <parent link="dong_co_4"/>
+  <child link="banh_xe_4"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<!-- SENSORS -->
+<joint name="fixed_lidar" type="fixed">
+  <origin xyz="-0.15 0.1 0.08" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="ros_LiDar_1"/>
+</joint>
+
+<joint name="fixed_camera" type="fixed">
+  <origin xyz="0.0 0.105 0.015" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="ros_camera_1"/>
+</joint>
+
+<!-- ENCODER: virtual link gan vao base_link -->
+<joint name="encoder_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="encoder_link"/>
+</joint>
+
+<!-- ================================================================ -->
+<!--              ROS2_CONTROL - HARDWARE INTERFACE                   -->
+<!-- ================================================================ -->
+<ros2_control name="GazeboSystem" type="system">
+  <hardware>
+    <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+  </hardware>
+
+  <joint name="slider_joint">
+    <command_interface name="position">
+      <param name="min">-0.07</param>
+      <param name="max">0.0</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="revolute_arm">
+    <command_interface name="position">
+      <param name="min">-1.570796</param>
+      <param name="max">1.570796</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+</ros2_control>
+
+<!-- Gazebo ros2_control plugin -->
+<gazebo>
+  <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+    <parameters>$(find robot_ros_clean_description)/config/controllers.yaml</parameters>
+  </plugin>
+</gazebo>
+
+</robot>
